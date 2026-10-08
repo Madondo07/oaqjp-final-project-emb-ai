@@ -24,11 +24,10 @@ def emotion_detector_route():
     fear = result["fear"]
     joy = result["joy"]
     sadness = result["sadness"]
+    dominant_emotion = result["dominant_emotion"]
 
-    if all(value is None for value in result.values()):
+    if dominant_emotion is None:
         return "Invalid text! Please try again!"
-
-    dominant_emotion = max(result, key=result.get)
 
     response = (
         f"For the given statement, the system response is "
@@ -42,3 +41,4 @@ def emotion_detector_route():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+
